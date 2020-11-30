@@ -8,7 +8,7 @@ namespace Baralla
     public enum EnumPal
     {
 
-        //Trebol (♠), Pica (♣), Cor (♥), Diamant (♦)
+        //Trebol (♠), Pica (♣), Cor (♥), Diamant (♦) 
         TREBOL,
         PICA,
         COR,
