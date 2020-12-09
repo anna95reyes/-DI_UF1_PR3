@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -46,24 +47,6 @@ namespace baralla_projecte.View
             c.CartaChangedCallback(e);
         }
 
-        private void CartaChangedCallback(DependencyPropertyChangedEventArgs e)
-        {
-            SolidColorBrush color;
-            if (Carta.Pal == EnumPal.COR || Carta.Pal == EnumPal.DIAMANT)
-            {
-                color = new SolidColorBrush(Colors.Red);
-            } 
-            else
-            {
-                color = new SolidColorBrush(Colors.Black);
-            }
-            txbNumero.Foreground = color;
-            txbPal.Foreground = color;
-            txbNumero.Text = EnumDescriptionConverter.getDesc(Carta.Numero);
-            txbPal.Text = EnumDescriptionConverter.getDesc(Carta.Pal);
-        }
-
-
         public Boolean BackFace
         {
             get { return (Boolean)GetValue(BackFaceProperty); }
@@ -72,6 +55,118 @@ namespace baralla_projecte.View
 
         // Using a DependencyProperty as the backing store for BackFace.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty BackFaceProperty =
-            DependencyProperty.Register("BackFace", typeof(Boolean), typeof(UICarta), new PropertyMetadata(true));
+            DependencyProperty.Register("BackFace", typeof(Boolean), typeof(UICarta), new PropertyMetadata(false, 
+                CartaChangedCallbackStatic));
+
+        private void CartaChangedCallback(DependencyPropertyChangedEventArgs e)
+        {
+            if (BackFace)
+            {
+                for (int i = 0; i < rvpCarta.Children.Count; i++)
+                {
+                    rvpCarta.Children.RemoveAt(i);
+                }
+                Image imgBackFace = new Image();
+                imgBackFace.Source = Carta.BackFace;
+                rvpCarta.Children.Add(imgBackFace);               
+            }
+            else
+            {
+              dibujarCarta();  
+            }
+        }
+
+        SolidColorBrush color;
+
+        private void dibujarCarta()
+        {
+            
+            if (Carta.Pal == EnumPal.COR || Carta.Pal == EnumPal.DIAMANT)
+            {
+                color = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                color = new SolidColorBrush(Colors.Black);
+            }
+
+            /*
+             <Grid RelativePanel.AlignLeftWithPanel="True" Margin="20 10 0 0">
+                <TextBlock x:Name="txbNumero" Text="{Binding Converter={StaticResource EnumDescriptionConverter}}" 
+                           HorizontalAlignment="Center" FontSize="50" FontWeight="Black" FontFamily="Times New Roman"></TextBlock>
+                <TextBlock x:Name="txbPal" Text="{Binding Converter={StaticResource EnumDescriptionConverter}}" 
+                           FontSize="70" HorizontalAlignment="Center" Margin="0,40,0,0"/>
+            </Grid>
+             */
+
+            Grid grdPalDret = new Grid();
+            grdPalDret.Margin = new Thickness(20,10,0,0);
+            
+            grdPalDret.Children.Add(getTxbNumero());
+            grdPalDret.Children.Add(getTxbPal());
+
+            RelativePanel.SetAlignLeftWithPanel(grdPalDret, true);
+
+            rvpCarta.Children.Add(grdPalDret);
+
+            /*
+              <Grid RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
+                  Margin="20 10 0 0">
+                <Grid.RenderTransform>
+                    <CompositeTransform  Rotation="180" TranslateX="20" TranslateY="120"></CompositeTransform>
+                </Grid.RenderTransform>
+                <TextBlock x:Name="txbNumeroReves" Text="{Binding Converter={StaticResource EnumDescriptionConverter}}" 
+                           HorizontalAlignment="Center" FontSize="50" 
+                           FontWeight="Black" FontFamily="Times New Roman"></TextBlock>
+                <TextBlock x:Name="txbPalReves" Text="{Binding Converter={StaticResource EnumDescriptionConverter}}" 
+                           FontSize="70" HorizontalAlignment="Center" Margin="0,40,0,0"/>
+            </Grid>
+             */
+
+            Grid grdPalGirat = new Grid();
+            grdPalGirat.Margin = new Thickness(20, 10, 0, 0);
+
+            CompositeTransform transformGrdPalGirat = new CompositeTransform();
+            transformGrdPalGirat.Rotation = 180;
+            transformGrdPalGirat.TranslateX = 20;
+            transformGrdPalGirat.TranslateY = 120;
+
+            grdPalGirat.RenderTransform = transformGrdPalGirat;
+
+            grdPalGirat.Children.Add(getTxbNumero());
+            grdPalGirat.Children.Add(getTxbPal());
+
+            RelativePanel.SetAlignBottomWithPanel(grdPalGirat, true);
+            RelativePanel.SetAlignRightWithPanel(grdPalGirat, true);
+
+            rvpCarta.Children.Add(grdPalGirat);
+        }
+
+        private TextBlock getTxbNumero()
+        {
+            TextBlock txbNumero = new TextBlock();
+            txbNumero.Text = EnumDescriptionConverter.getDesc(Carta.Numero);
+            txbNumero.HorizontalAlignment = HorizontalAlignment.Center;
+            txbNumero.FontWeight = FontWeights.Black;
+            txbNumero.FontSize = 50;
+            txbNumero.FontFamily = new FontFamily("Times New Roman");
+            txbNumero.Foreground = color;
+
+            return txbNumero;
+        }
+
+        private TextBlock getTxbPal()
+        {
+            TextBlock txbPal = new TextBlock();
+            txbPal.Text = EnumDescriptionConverter.getDesc(Carta.Pal);
+            txbPal.FontSize = 70;
+            txbPal.HorizontalAlignment = HorizontalAlignment.Center;
+            txbPal.Margin = new Thickness(0, 40, 0, 0);
+            txbPal.Foreground = color;
+
+            return txbPal;
+        }
+
+        
     }
 }

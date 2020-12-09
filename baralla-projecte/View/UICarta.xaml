@@ -13,29 +13,31 @@
     <UserControl.Resources>
         <model:EnumDescriptionConverter x:Key="EnumDescriptionConverter"></model:EnumDescriptionConverter>
     </UserControl.Resources>
-    <!--Fer un relative panel i despres dins un grid i per el centre buscar algo que sigui .Center o algo semblant-->
-    <RelativePanel x:Name="rvpCarta">
-        <!--<Image Source="/Assets/imatges/backFace.png" />-->
-        <!--<Image Source="/Assets/Captura.PNG" Height="678" Width="483"/>-->
+    <Border BorderBrush="Black" BorderThickness="4" CornerRadius="30" Background="White">
+        <RelativePanel x:Name="rvpCarta">
+            <!--<Image Source="/Assets/imatges/backFace.png" />-->
+            <!--<Image Source="/Assets/Captura.PNG" Height="678" Width="483"/>-->
 
-        <Grid RelativePanel.AlignLeftWithPanel="True" Margin="20 10 0 0">
-            <TextBlock x:Name="txbNumero" Text="{Binding Converter={StaticResource EnumDescriptionConverter}}" HorizontalAlignment="Center" FontSize="50" 
-                       FontWeight="Black" FontFamily="Times New Roman"></TextBlock>
-            <TextBlock x:Name="txbPal" Text="{Binding Converter={StaticResource EnumDescriptionConverter}}" FontSize="70" HorizontalAlignment="Center" Margin="0,40,0,0"/>
-        </Grid>
-        
-        <Grid RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
-            <TextBlock Text="♥" FontSize="160"></TextBlock>
-        </Grid>
-        
-        <Grid RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
-              Margin="20 10 0 0">
-            <Grid.RenderTransform>
-                <CompositeTransform  Rotation="180" TranslateX="20" TranslateY="120"></CompositeTransform>
-            </Grid.RenderTransform>
-            <TextBlock x:Name="txbNumeroReves" Text="A" HorizontalAlignment="Center" FontSize="50" 
-                       FontWeight="Black" FontFamily="Times New Roman"></TextBlock>
-            <TextBlock x:Name="txbPalReves" Text="♥" FontSize="70" HorizontalAlignment="Center" Margin="0,40,0,0"/>
-        </Grid>
-    </RelativePanel>
+            <Grid RelativePanel.AlignLeftWithPanel="True" Margin="20 10 0 0">
+                <TextBlock x:Name="txbNumero" Text="A" HorizontalAlignment="Center" FontSize="50" 
+                           FontWeight="Black" FontFamily="Times New Roman"></TextBlock>
+                <TextBlock x:Name="txbPal" Text="♥" FontSize="70" HorizontalAlignment="Center" Margin="0,40,0,0"/>
+            </Grid>
+
+            <Grid RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                <TextBlock Text="♥" FontSize="160"></TextBlock>
+            </Grid>
+
+            <Grid RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
+                  Margin="20 10 0 0">
+                <Grid.RenderTransform>
+                    <CompositeTransform  Rotation="180" TranslateX="20" TranslateY="120"></CompositeTransform>
+                </Grid.RenderTransform>
+                <TextBlock x:Name="txbNumeroReves" Text="A" HorizontalAlignment="Center" FontSize="50" 
+                           FontWeight="Black" FontFamily="Times New Roman"></TextBlock>
+                <TextBlock x:Name="txbPalReves" Text="♥" FontSize="70" HorizontalAlignment="Center" Margin="0,40,0,0"/>
+            </Grid>
+        </RelativePanel>
+    </Border>
+    
 </UserControl>

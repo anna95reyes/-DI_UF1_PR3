@@ -31,6 +31,7 @@ namespace baralla_projecte
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             uiCarta.Carta = new Carta(EnumNumeracio.A, EnumPal.COR, new int [5,6], false);
+            uiCarta.BackFace = uiCarta.Carta.EstaGirada;
         }
     }
 }
