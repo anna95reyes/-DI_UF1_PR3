@@ -38,7 +38,7 @@ namespace baralla_projecte
 
         public EnumNumeracio Numero { get => numero; set => numero = value; }
         public EnumPal Pal { get => pal; set => pal = value; }
-        public char Caracter { get => caracter; set => caracter = value; }
+        //public char Caracter { get => caracter; set => caracter = value; }
         public int[,] Distribucio { get => distribucio; set => distribucio = value; }
         public BitmapImage Imatge { get => imatge; set => imatge = value; }
         public BitmapImage BackFace { get => backFace; set => backFace = value; }

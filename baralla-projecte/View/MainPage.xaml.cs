@@ -30,9 +30,7 @@ namespace baralla_projecte
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            uiCarta.Carta = new Carta(EnumNumeracio.A, EnumPal.COR, 'A', new int [5,6], false);
-
-            //(EnumNumeracio numero, EnumPal pal, char caracter, int[][] distribucio, bool estaGirada)
+            uiCarta.Carta = new Carta(EnumNumeracio.A, EnumPal.COR, new int [5,6], false);
         }
     }
 }
