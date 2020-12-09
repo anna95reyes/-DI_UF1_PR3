@@ -1,4 +1,5 @@
-﻿using System;
+﻿using baralla_projecte;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,13 @@ namespace baralla_projecte
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            uiCarta.Carta = new Carta(EnumNumeracio.A, EnumPal.COR, 'A', new int [5,6], false);
+
+            //(EnumNumeracio numero, EnumPal pal, char caracter, int[][] distribucio, bool estaGirada)
         }
     }
 }
