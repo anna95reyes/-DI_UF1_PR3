@@ -17,7 +17,7 @@
         <RelativePanel x:Name="rvpCarta">
             <!--<Image Source="/Assets/imatges/backFace.png" />-->
             <!--<Image Source="/Assets/Captura.PNG" Height="678" Width="483"/>-->
-
+ 
             <Grid RelativePanel.AlignLeftWithPanel="True" Margin="20 10 0 0">
                 <TextBlock x:Name="txbNumero" Text="A" HorizontalAlignment="Center" FontSize="50" 
                            FontWeight="Black" FontFamily="Times New Roman"></TextBlock>
