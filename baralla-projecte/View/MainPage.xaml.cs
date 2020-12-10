@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
@@ -30,7 +31,7 @@ namespace baralla_projecte
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            uiCarta.Carta = new Carta(EnumNumeracio.A, EnumPal.COR, new int [5,6], false);
+            uiCarta.Carta = new Carta(EnumNumeracio.A, EnumPal.DIAMANT, new int [5,6], false);
             uiCarta.BackFace = uiCarta.Carta.EstaGirada;
         }
     }
