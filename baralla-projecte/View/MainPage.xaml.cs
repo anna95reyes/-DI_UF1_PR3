@@ -1,6 +1,7 @@
 ﻿using baralla_projecte;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -29,10 +30,28 @@ namespace baralla_projecte
             this.InitializeComponent();
         }
 
+        //S'ha de fer una baralla, que son 52 cartes
+        //removerange
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            uiCarta.Carta = new Carta(EnumNumeracio.A, EnumPal.DIAMANT, new int [5,6], false);
-            uiCarta.BackFace = uiCarta.Carta.EstaGirada;
+            ObservableCollection<Carta> cartes = new ObservableCollection<Carta>();
+
+            Carta carta1 = new Carta(EnumNumeracio.J, EnumPal.TREBOL, false);
+            Carta carta2 = new Carta(EnumNumeracio.N6, EnumPal.PICA, false);
+            Carta carta3 = new Carta(EnumNumeracio.N9, EnumPal.COR, false);
+            Carta carta4 = new Carta(EnumNumeracio.N3, EnumPal.DIAMANT, false);
+            Carta carta5 = new Carta(EnumNumeracio.K, EnumPal.PICA, false);
+
+            cartes.Add(carta1);
+            cartes.Add(carta2);
+            cartes.Add(carta3);
+            cartes.Add(carta4);
+            cartes.Add(carta5);
+
+            uiMa.Cartes = cartes;
+
+            
         }
     }
 }

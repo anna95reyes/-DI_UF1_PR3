@@ -141,17 +141,95 @@ namespace baralla_projecte.View
             }
             else
             {
-                TextBlock txtPalCentre = new TextBlock();
-                txtPalCentre.Text = EnumDescriptionConverter.getDesc(Carta.Pal);
-                txtPalCentre.FontSize = 160;
-                txtPalCentre.Foreground = color;
-                grdPalsCarta.Children.Add(txtPalCentre);
+                Grid grdPalCentre = distribucioCarta(Carta.Numero, Carta.Pal);
+                grdPalsCarta.Children.Add(grdPalCentre);
             }
 
             RelativePanel.SetAlignHorizontalCenterWithPanel(grdPalsCarta, true);
             RelativePanel.SetAlignVerticalCenterWithPanel(grdPalsCarta, true);
 
             rvpCarta.Children.Add(grdPalsCarta);
+        }
+
+        private Grid distribucioCarta(EnumNumeracio numero, EnumPal pal)
+        {
+            Grid grdPals = new Grid();
+            grdPals.Height = 520;
+            grdPals.Width = 330;
+            //grdPals.Background = new SolidColorBrush(Colors.Blue);
+
+            int files = Carta.Distribucio.GetLength(0);
+            int columnes = Carta.Distribucio.GetLength(1);
+
+            /*
+            <Grid>
+                <Grid.RowDefinitions> //12
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions> //3
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            */
+
+            for (int i = 0; i < files; i++)
+            {
+                RowDefinition fila = new RowDefinition();
+                fila.Height = new GridLength(2, GridUnitType.Star);
+                grdPals.RowDefinitions.Add(fila);
+            }
+
+            for (int i = 0; i < columnes; i++)
+            {
+                ColumnDefinition columna = new ColumnDefinition();
+                columna.Width = new GridLength(2, GridUnitType.Star);
+                grdPals.ColumnDefinitions.Add(columna);
+            }
+
+
+            for (int y = 0; y < files; y++)
+            {
+                for (int x = 0; x < columnes; x++)
+                {
+                    if (Carta.Distribucio[y, x] == 1)
+                    {
+                        TextBlock txtPalsCentre = crearPals(pal);
+                        Grid.SetColumn(txtPalsCentre, x);
+                        Grid.SetRow(txtPalsCentre, y);
+                        Grid.SetRowSpan(txtPalsCentre, 2);
+                        grdPals.Children.Add(txtPalsCentre);
+                    }
+                    else if (Carta.Distribucio[y, x] == 2)
+                    {
+                        TextBlock txtPalsCentre = crearPals(pal);
+                        Grid.SetColumn(txtPalsCentre, x);
+                        Grid.SetRow(txtPalsCentre, y);
+                        Grid.SetRowSpan(txtPalsCentre, 2);
+
+                        CompositeTransform transformGrdPalsCentre = new CompositeTransform();
+                        transformGrdPalsCentre.Rotation = 180;
+                        transformGrdPalsCentre.TranslateX = 82;
+                        transformGrdPalsCentre.TranslateY = 160;
+
+                        txtPalsCentre.RenderTransform = transformGrdPalsCentre;
+                        grdPals.Children.Add(txtPalsCentre);
+                    }
+
+                }
+            }
+
+            return grdPals;
+        }
+
+        private TextBlock crearPals(EnumPal pal)
+        {
+            TextBlock txtPalsCentre = new TextBlock();
+            txtPalsCentre.FontSize = 120;
+            txtPalsCentre.Foreground = color;
+            txtPalsCentre.Text = EnumDescriptionConverter.getDesc(pal);
+            txtPalsCentre.HorizontalAlignment = HorizontalAlignment.Center;
+            txtPalsCentre.VerticalAlignment = VerticalAlignment.Center;
+            return txtPalsCentre;
         }
 
         private void grdPalAbaix()

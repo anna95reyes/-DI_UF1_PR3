@@ -17,11 +17,11 @@ namespace baralla_projecte
         private BitmapImage imatge;
         private BitmapImage backFace;
 
-        public Carta(EnumNumeracio numero, EnumPal pal, int[,] distribucio, bool estaGirada)
+        public Carta(EnumNumeracio numero, EnumPal pal, bool estaGirada)
         {
             Numero = numero;
             Pal = pal;
-            Distribucio = distribucio;
+            Distribucio = distribucioSegonsNumero();
             Imatge = getImatge();
             BackFace = new BitmapImage(new Uri("ms-appx:///Assets/imatges/backFace.png"));
             EstaGirada = estaGirada;
@@ -82,6 +82,105 @@ namespace baralla_projecte
             }
 
             return bitmapImage;
+        }
+
+        private int[,] distribucioSegonsNumero()
+        {
+            int[,] matriu = new int[12,3];
+
+            if (Numero != EnumNumeracio.J && Numero != EnumNumeracio.Q && Numero != EnumNumeracio.K)
+            {
+                if (Numero == EnumNumeracio.A)
+                {
+                    matriu[5,1] = 1;
+                }
+                else if (Numero == EnumNumeracio.N2)
+                {
+                    matriu[0,1] = 1;
+                    matriu[10,1] = 2;
+                }
+                else if (Numero == EnumNumeracio.N3)
+                {
+                    matriu[0, 1] = 1;
+                    matriu[5, 1] = 1;
+                    matriu[10, 1] = 2;
+                }
+                else if (Numero == EnumNumeracio.N4)
+                {
+                    matriu[0, 0] = 1;
+                    matriu[0, 2] = 1;
+                    matriu[10, 0] = 2;
+                    matriu[10, 2] = 2;
+                }
+                else if (Numero == EnumNumeracio.N5)
+                {
+                    matriu[0, 0] = 1;
+                    matriu[0, 2] = 1;
+                    matriu[5, 1] = 1;
+                    matriu[10, 0] = 2;
+                    matriu[10, 2] = 2;
+                }
+                else if (Numero == EnumNumeracio.N6)
+                {
+                    matriu[0, 0] = 1;
+                    matriu[0, 2] = 1;
+                    matriu[5, 0] = 1;
+                    matriu[5, 2] = 1;
+                    matriu[10, 0] = 2;
+                    matriu[10, 2] = 2;
+                }
+                else if (Numero == EnumNumeracio.N7)
+                {
+                    matriu[0, 0] = 1;
+                    matriu[0, 2] = 1;
+                    matriu[3, 1] = 1;
+                    matriu[5, 0] = 1;
+                    matriu[5, 2] = 1;
+                    matriu[10, 0] = 2;
+                    matriu[10, 2] = 2;
+                }
+                else if (Numero == EnumNumeracio.N8)
+                {
+                    matriu[0, 0] = 1;
+                    matriu[0, 2] = 1;
+                    matriu[3, 1] = 1;
+                    matriu[5, 0] = 1;
+                    matriu[5, 2] = 1;
+                    matriu[8, 1] = 2;
+                    matriu[10, 0] = 2;
+                    matriu[10, 2] = 2;
+                }
+                else if (Numero == EnumNumeracio.N9)
+                {
+                    matriu[0, 0] = 1;
+                    matriu[0, 2] = 1;
+                    matriu[3, 0] = 1;
+                    matriu[3, 2] = 1;
+                    matriu[5, 1] = 1;
+                    matriu[7, 0] = 2;
+                    matriu[7, 2] = 2;
+                    matriu[10, 0] = 2;
+                    matriu[10, 2] = 2;
+                }
+                else if (Numero == EnumNumeracio.N10)
+                {
+                    matriu[0, 0] = 1;
+                    matriu[0, 2] = 1;
+                    matriu[2, 1] = 1;
+                    matriu[4, 0] = 1;
+                    matriu[4, 2] = 1;
+                    matriu[7, 0] = 2;
+                    matriu[7, 2] = 2;
+                    matriu[8, 1] = 2;
+                    matriu[10, 0] = 2;
+                    matriu[10, 2] = 2;
+                }
+
+                return matriu;
+            }
+                
+
+            return null;
         }
 
         public EnumNumeracio Numero { get => numero; set => numero = value; }

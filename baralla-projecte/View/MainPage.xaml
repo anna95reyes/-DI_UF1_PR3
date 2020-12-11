@@ -11,6 +11,6 @@
     Loaded="Page_Loaded">
 
     <Grid>
-        <view:UICarta x:Name="uiCarta"></view:UICarta>
+        <view:UIMa x:Name="uiMa"></view:UIMa>
     </Grid>
 </Page>

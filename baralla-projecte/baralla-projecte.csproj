@@ -130,6 +130,9 @@
     <Compile Include="View\UICarta.xaml.cs">
       <DependentUpon>UICarta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UIMa.xaml.cs">
+      <DependentUpon>UIMa.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -137,7 +140,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Captura.PNG" />
     <Content Include="Assets\imatges\backFace.png" />
     <Content Include="Assets\imatges\C_J.png" />
     <Content Include="Assets\imatges\C_K.PNG" />
@@ -170,6 +172,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\UICarta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UIMa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

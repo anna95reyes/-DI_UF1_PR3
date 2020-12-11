@@ -7,14 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:model="using:baralla_projecte.Model"
     mc:Ignorable="d"
-    Height="678"
+    Height="678" 
     Width="483"
     >
+    
     <UserControl.Resources>
         <model:EnumDescriptionConverter x:Key="EnumDescriptionConverter"></model:EnumDescriptionConverter>
     </UserControl.Resources>
-    <Border BorderBrush="Black" BorderThickness="4" CornerRadius="30" Background="White">
-        <RelativePanel x:Name="rvpCarta">
+    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="30" Background="White">
+        <RelativePanel x:Name="rvpCarta" Background="White">
             <!--<Image Source="/Assets/imatges/backFace.png" />-->
             <!--<Image Source="/Assets/Captura.PNG" Height="678" Width="483"/>-->
 
@@ -29,7 +30,7 @@
 
                 --><!--<TextBlock Text="♥" FontSize="160"></TextBlock>--><!--
             </Grid>
-
+                
             <Grid RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
                   Margin="20 10 0 0">
                 <Grid.RenderTransform>
