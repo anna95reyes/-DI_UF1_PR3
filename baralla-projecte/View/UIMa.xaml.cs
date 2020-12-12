@@ -25,6 +25,7 @@ namespace baralla_projecte.View
             this.InitializeComponent();
         }
 
+        ObservableCollection<UICarta> llistaUiCartesEnMa = new ObservableCollection<UICarta>();
         public ObservableCollection<Carta> Cartes
         {
             get { return (ObservableCollection<Carta>)GetValue(CartesProperty); }
@@ -44,37 +45,25 @@ namespace baralla_projecte.View
 
         private void CartesChangedCallback(DependencyPropertyChangedEventArgs e)
         {
-            //uiCarta.Carta = new Carta(EnumNumeracio.J, EnumPal.TREBOL, false);
-            //uiCarta.BackFace = uiCarta.Carta.EstaGirada;
-
-            //for (int i = 0; i < Cartes.Count; i++)
-            //{
-            uiCarta1.Carta = Cartes[0];
-            uiCarta2.Carta = Cartes[1];
-            uiCarta3.Carta = Cartes[2];
-            uiCarta4.Carta = Cartes[3];
-            uiCarta5.Carta = Cartes[4];
-
-            for (int i = 0; i < Cartes.Count; i++) {
-                    CompositeTransform transform = new CompositeTransform();
-                transform.CenterX = i;
-                transform.CenterY = i;
-                transform.Rotation = 10 * i;
-                transform.TranslateX = 10 * i;
-                transform.TranslateY = 10 * i;
-                if (i == 0)
-                    uiCarta1.RenderTransform = transform;
-                if (i == 1)
-                    uiCarta2.RenderTransform = transform;
-                if (i == 2)
-                    uiCarta3.RenderTransform = transform;
-                if (i == 3)
-                    uiCarta4.RenderTransform = transform;
-                if (i == 4)
-                    uiCarta5.RenderTransform = transform;
+            
+            for (int i = 0; i < Cartes.Count; i++)
+            {
+                UICarta nouUiCarta = new UICarta();
+                nouUiCarta.Carta = Cartes[i];
+                llistaUiCartesEnMa.Add(nouUiCarta);
+                grdUiCarta.Children.Add(nouUiCarta);
             }
 
-            //}
+            for (int i = 0; i < llistaUiCartesEnMa.Count; i++)
+            {
+                CompositeTransform transform = new CompositeTransform();
+                transform.CenterX = i;
+                transform.CenterY = i;
+                transform.Rotation = 12 * i;
+                transform.TranslateX = 10 * i;
+                transform.TranslateY = 10 * i;
+                llistaUiCartesEnMa[i].RenderTransform = transform;
+            }
         }
     }
 }

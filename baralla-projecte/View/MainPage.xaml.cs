@@ -1,7 +1,9 @@
 ﻿using baralla_projecte;
+using baralla_projecte.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,28 +32,45 @@ namespace baralla_projecte
             this.InitializeComponent();
         }
 
-        //S'ha de fer una baralla, que son 52 cartes
-        //removerange
+        ObservableCollection<Carta> baralla = new ObservableCollection<Carta>();
+        
+        const int qtatPals = 4;
+        const int qtatNumeros = 13;
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<Carta> cartes = new ObservableCollection<Carta>();
+            generarBaralla();
+            barrellarBaralla();
 
-            Carta carta1 = new Carta(EnumNumeracio.J, EnumPal.TREBOL, false);
-            Carta carta2 = new Carta(EnumNumeracio.N6, EnumPal.PICA, false);
-            Carta carta3 = new Carta(EnumNumeracio.N9, EnumPal.COR, false);
-            Carta carta4 = new Carta(EnumNumeracio.N3, EnumPal.DIAMANT, false);
-            Carta carta5 = new Carta(EnumNumeracio.K, EnumPal.PICA, false);
+            ObservableCollection<Carta> maCartes = new ObservableCollection<Carta>();
+            cartesEnMa(maCartes, 5);
+            uiMa.Cartes = maCartes;
 
-            cartes.Add(carta1);
-            cartes.Add(carta2);
-            cartes.Add(carta3);
-            cartes.Add(carta4);
-            cartes.Add(carta5);
+        }
 
-            uiMa.Cartes = cartes;
+        private void cartesEnMa(ObservableCollection<Carta> maCartes, int qtatCarnesEnMa)
+        {
+            for (int i = 0; i < qtatCarnesEnMa; i++)
+            {
+                maCartes.Add(baralla[i]);
+            }
+        }
 
+        private void barrellarBaralla()
+        {
             
+        }
+
+        private void generarBaralla()
+        {
+            for (int p = 0; p < qtatPals; p++)
+            {
+                for (int n = 0; n < qtatNumeros; n++)
+                {
+                    Carta carta = new Carta((EnumNumeracio)n, (EnumPal)p, false);
+                    baralla.Add(carta);
+                }
+            }
         }
     }
 }

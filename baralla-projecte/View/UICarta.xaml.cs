@@ -108,7 +108,7 @@ namespace baralla_projecte.View
              */
 
             Grid grdPalDret = new Grid();
-            grdPalDret.Margin = new Thickness(20, 10, 0, 0);
+            grdPalDret.Margin = new Thickness(10, 5, 0, 0);
 
             grdPalDret.Children.Add(getTxbNumero());
             grdPalDret.Children.Add(getTxbPal());
@@ -133,7 +133,7 @@ namespace baralla_projecte.View
             {
                 Image imgReis = new Image();
                 imgReis.Source = Carta.Imatge;
-                imgReis.Height = 520;
+                imgReis.Height = 260;
                 imgReis.VerticalAlignment = VerticalAlignment.Center;
                 imgReis.HorizontalAlignment = HorizontalAlignment.Center;
 
@@ -154,8 +154,8 @@ namespace baralla_projecte.View
         private Grid distribucioCarta(EnumNumeracio numero, EnumPal pal)
         {
             Grid grdPals = new Grid();
-            grdPals.Height = 520;
-            grdPals.Width = 330;
+            grdPals.Height = 260;
+            grdPals.Width = 165;
             //grdPals.Background = new SolidColorBrush(Colors.Blue);
 
             int files = Carta.Distribucio.GetLength(0);
@@ -208,8 +208,8 @@ namespace baralla_projecte.View
 
                         CompositeTransform transformGrdPalsCentre = new CompositeTransform();
                         transformGrdPalsCentre.Rotation = 180;
-                        transformGrdPalsCentre.TranslateX = 82;
-                        transformGrdPalsCentre.TranslateY = 160;
+                        transformGrdPalsCentre.TranslateX = 41;
+                        transformGrdPalsCentre.TranslateY = 80;
 
                         txtPalsCentre.RenderTransform = transformGrdPalsCentre;
                         grdPals.Children.Add(txtPalsCentre);
@@ -224,7 +224,7 @@ namespace baralla_projecte.View
         private TextBlock crearPals(EnumPal pal)
         {
             TextBlock txtPalsCentre = new TextBlock();
-            txtPalsCentre.FontSize = 120;
+            txtPalsCentre.FontSize = 60;
             txtPalsCentre.Foreground = color;
             txtPalsCentre.Text = EnumDescriptionConverter.getDesc(pal);
             txtPalsCentre.HorizontalAlignment = HorizontalAlignment.Center;
@@ -249,12 +249,12 @@ namespace baralla_projecte.View
              */
 
             Grid grdPalGirat = new Grid();
-            grdPalGirat.Margin = new Thickness(20, 10, 0, 0);
+            grdPalGirat.Margin = new Thickness(10, 5, 0, 0);
 
             CompositeTransform transformGrdPalGirat = new CompositeTransform();
             transformGrdPalGirat.Rotation = 180;
-            transformGrdPalGirat.TranslateX = 25;
-            transformGrdPalGirat.TranslateY = 120;
+            transformGrdPalGirat.TranslateX = 12.5;
+            transformGrdPalGirat.TranslateY = 60;
 
             grdPalGirat.RenderTransform = transformGrdPalGirat;
 
@@ -273,7 +273,7 @@ namespace baralla_projecte.View
             txbNumero.Text = EnumDescriptionConverter.getDesc(Carta.Numero);
             txbNumero.HorizontalAlignment = HorizontalAlignment.Center;
             txbNumero.FontWeight = FontWeights.Black;
-            txbNumero.FontSize = 50;
+            txbNumero.FontSize = 26;
             txbNumero.FontFamily = new FontFamily("Times New Roman");
             txbNumero.Foreground = color;
 
@@ -284,9 +284,9 @@ namespace baralla_projecte.View
         {
             TextBlock txbPal = new TextBlock();
             txbPal.Text = EnumDescriptionConverter.getDesc(Carta.Pal);
-            txbPal.FontSize = 70;
+            txbPal.FontSize = 35;
             txbPal.HorizontalAlignment = HorizontalAlignment.Center;
-            txbPal.Margin = new Thickness(0, 40, 0, 0);
+            txbPal.Margin = new Thickness(0, 15, 0, 0);
             txbPal.Foreground = color;
 
             return txbPal;

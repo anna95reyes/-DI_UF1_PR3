@@ -84,6 +84,7 @@ namespace baralla_projecte
             return bitmapImage;
         }
 
+        //Aquesta funcio retorna la distribuccio dels Pal respecte al Numero si no es J, Q o K, si no retorna null
         private int[,] distribucioSegonsNumero()
         {
             int[,] matriu = new int[12,3];
