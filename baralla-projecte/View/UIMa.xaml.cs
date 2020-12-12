@@ -56,14 +56,22 @@ namespace baralla_projecte.View
 
             for (int i = 0; i < llistaUiCartesEnMa.Count; i++)
             {
-                CompositeTransform transform = new CompositeTransform();
-                transform.CenterX = i;
-                transform.CenterY = i;
-                transform.Rotation = 12 * i;
-                transform.TranslateX = 10 * i;
-                transform.TranslateY = 10 * i;
-                llistaUiCartesEnMa[i].RenderTransform = transform;
+                CompositeTransform uiTransform = new CompositeTransform();
+                uiTransform.CenterX = llistaUiCartesEnMa[i].Width*25/100;
+                uiTransform.CenterY = llistaUiCartesEnMa[i].Height;
+                uiTransform.Rotation = 12 * (i + 1);
+                uiTransform.TranslateX = 1 * (i + 1);
+                uiTransform.TranslateY = 1 * (i + 1);
+                llistaUiCartesEnMa[i].RenderTransform = uiTransform;
             }
+
+            CompositeTransform grdTransform = new CompositeTransform();
+            grdTransform.CenterX = grdUiCarta.Width / 2;
+            grdTransform.CenterY = grdUiCarta.Height;
+            grdTransform.Rotation = -45;
+            grdTransform.TranslateX = -150;
+            grdTransform.TranslateY = 630;
+            grdUiCarta.RenderTransform = grdTransform;
         }
     }
 }
