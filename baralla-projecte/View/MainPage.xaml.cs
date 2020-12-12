@@ -58,7 +58,7 @@ namespace baralla_projecte
 
         private void barrellarBaralla()
         {
-            
+            //buscar com barrellar la baralla i colocar be la ma
         }
 
         private void generarBaralla()
