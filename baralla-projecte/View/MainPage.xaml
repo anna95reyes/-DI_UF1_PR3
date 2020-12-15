@@ -11,6 +11,11 @@
     Loaded="Page_Loaded">
 
     <Grid>
-        <view:UIMa x:Name="uiMa"></view:UIMa>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <view:UIMa x:Name="uiMa" Grid.Column="0"></view:UIMa>
+        <Button x:Name="btnGenerarMa" Grid.Column="1" Content="Generar Ma" Margin="10" Click="btnGenerarMa_Click"/>
     </Grid>
 </Page>

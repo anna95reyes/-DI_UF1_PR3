@@ -42,6 +42,7 @@ namespace baralla_projecte.View
             DependencyProperty.Register("Carta", typeof(Carta), typeof(UICarta), new PropertyMetadata(null, 
                 CartaChangedCallbackStatic));
 
+        //Realment aixo no faria falta perque desde Carta.estaGirada tambe es pot accedir
         public Boolean BackFace
         {
             get { return (Boolean)GetValue(BackFaceProperty); }
@@ -51,7 +52,18 @@ namespace baralla_projecte.View
         // Using a DependencyProperty as the backing store for BackFace.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty BackFaceProperty =
             DependencyProperty.Register("BackFace", typeof(Boolean), typeof(UICarta), new PropertyMetadata(false, 
-                CartaChangedCallbackStatic));
+                BackFaceChangedCallbackStatic));
+
+        private static void BackFaceChangedCallbackStatic(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            UICarta c = (UICarta)d;
+            c.BackFaceChangedCallback(e);
+        }
+
+        private void BackFaceChangedCallback(DependencyPropertyChangedEventArgs e)
+        {
+            Carta.EstaGirada = BackFace;
+        }
 
         private static void CartaChangedCallbackStatic(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -61,7 +73,7 @@ namespace baralla_projecte.View
 
         private void CartaChangedCallback(DependencyPropertyChangedEventArgs e)
         {
-            if (BackFace)
+            if (Carta.EstaGirada)
             {
                 for (int i = 0; i < rvpCarta.Children.Count; i++)
                 {
@@ -224,7 +236,7 @@ namespace baralla_projecte.View
         private TextBlock crearPals(EnumPal pal)
         {
             TextBlock txtPalsCentre = new TextBlock();
-            txtPalsCentre.FontSize = 60;
+            txtPalsCentre.FontSize = 54;
             txtPalsCentre.Foreground = color;
             txtPalsCentre.Text = EnumDescriptionConverter.getDesc(pal);
             txtPalsCentre.HorizontalAlignment = HorizontalAlignment.Center;

@@ -41,24 +41,7 @@ namespace baralla_projecte
         {
             generarBaralla();
             barrellarBaralla();
-
-            ObservableCollection<Carta> maCartes = new ObservableCollection<Carta>();
-            cartesEnMa(maCartes, 5);
-            uiMa.Cartes = maCartes;
-
-        }
-
-        private void cartesEnMa(ObservableCollection<Carta> maCartes, int qtatCarnesEnMa)
-        {
-            for (int i = 0; i < qtatCarnesEnMa; i++)
-            {
-                maCartes.Add(baralla[i]);
-            }
-        }
-
-        private void barrellarBaralla()
-        {
-            //buscar com barrellar la baralla i colocar be la ma
+            generarMaDeCartes();
         }
 
         private void generarBaralla()
@@ -72,5 +55,51 @@ namespace baralla_projecte
                 }
             }
         }
+
+        private void barrellarBaralla()
+        {
+            ObservableCollection<Carta> barallaBarellada = new ObservableCollection<Carta>();
+
+            Random randNum = new Random();
+
+            while (baralla.Count > 0)
+            {
+                int indexCartaAleatoria = randNum.Next(0, baralla.Count - 1);
+                barallaBarellada.Add(baralla[indexCartaAleatoria]);
+                baralla.RemoveAt(indexCartaAleatoria);
+            }
+
+            for (int i = 0; i < barallaBarellada.Count; i++)
+            {
+                baralla.Add(barallaBarellada[i]);
+            }
+
+        }
+
+        private void generarMaDeCartes()
+        {
+            ObservableCollection<Carta> maCartes = new ObservableCollection<Carta>();
+            
+            Random randCartesEnMa = new Random();
+
+            cartesEnMa(maCartes, randCartesEnMa.Next(1, 13));
+            uiMa.Cartes = maCartes;
+        }
+
+        private void cartesEnMa(ObservableCollection<Carta> maCartes, int qtatCarnesEnMa)
+        {
+            for (int i = 0; i < qtatCarnesEnMa; i++)
+            {
+                maCartes.Add(baralla[i]);
+            }
+        }
+
+        private void btnGenerarMa_Click(object sender, RoutedEventArgs e)
+        {
+            barrellarBaralla();
+            generarMaDeCartes();
+        }
+
+        
     }
 }
