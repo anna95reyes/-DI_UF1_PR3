@@ -205,18 +205,12 @@ namespace baralla_projecte.View
                 {
                     if (Carta.Distribucio[y, x] == 1)
                     {
-                        TextBlock txtPalsCentre = crearPals(pal);
-                        Grid.SetColumn(txtPalsCentre, x);
-                        Grid.SetRow(txtPalsCentre, y);
-                        Grid.SetRowSpan(txtPalsCentre, 2);
-                        grdPals.Children.Add(txtPalsCentre);
+                        grdPals.Children.Add(colocarPals(pal, x, y));
                     }
                     else if (Carta.Distribucio[y, x] == 2)
                     {
-                        TextBlock txtPalsCentre = crearPals(pal);
-                        Grid.SetColumn(txtPalsCentre, x);
-                        Grid.SetRow(txtPalsCentre, y);
-                        Grid.SetRowSpan(txtPalsCentre, 2);
+                        TextBlock txtPalsCentre = colocarPals(pal, x, y);
+                        grdPals.Children.Add(txtPalsCentre);
 
                         CompositeTransform transformGrdPalsCentre = new CompositeTransform();
                         transformGrdPalsCentre.Rotation = 180;
@@ -231,6 +225,16 @@ namespace baralla_projecte.View
             }
 
             return grdPals;
+        }
+
+        private TextBlock colocarPals(EnumPal pal, int x, int y)
+        {
+            TextBlock txtPalsCentre = crearPals(pal);
+            Grid.SetColumn(txtPalsCentre, x);
+            Grid.SetRow(txtPalsCentre, y);
+            Grid.SetRowSpan(txtPalsCentre, 2);
+
+            return txtPalsCentre;
         }
 
         private TextBlock crearPals(EnumPal pal)
