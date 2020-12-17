@@ -210,7 +210,6 @@ namespace baralla_projecte.View
                     else if (Carta.Distribucio[y, x] == 2)
                     {
                         TextBlock txtPalsCentre = colocarPals(pal, x, y);
-                        grdPals.Children.Add(txtPalsCentre);
 
                         CompositeTransform transformGrdPalsCentre = new CompositeTransform();
                         transformGrdPalsCentre.Rotation = 180;
